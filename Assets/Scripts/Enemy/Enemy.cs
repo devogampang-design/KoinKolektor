@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public static event Action<Enemy> OnZombieMati;
 
-    private StateZpmbie currentState = StateZpmbie.Idle;
+    private StateZombie currentState = StateZombie.IDLE;
 
     public TMP_Text status;
 
@@ -35,16 +35,16 @@ public class Enemy : MonoBehaviour, IDamageable
 
         switch (currentState)
         {
-            case StateZpmbie.Idle:
+            case StateZombie.IDLE:
                 PerilakuIdle();
                 break;
-            case StateZpmbie.Patrol:
+            case StateZombie.PATROL:
                 PerilakuPatrol();
                 break;
-            case StateZpmbie.Chase:
+            case StateZombie.CHASE:
                 PerilakuChase();
                 break;
-            case StateZpmbie.Attack:
+            case StateZombie.ATTACK:
                 PerilakuAttack();
                 break;
         }
@@ -153,15 +153,15 @@ public class Enemy : MonoBehaviour, IDamageable
 
         if (jarak <= jarakSerang)
         {
-            currentState = StateZpmbie.Attack;
+            currentState = StateZombie.ATTACK;
         }
         else if (jarak <= jarakDeteksi)
         {
-            currentState = StateZpmbie.Chase;
+            currentState = StateZombie.CHASE;
         }
         else
         {
-            currentState = StateZpmbie.Patrol;
+            currentState = StateZombie.PATROL;
         }
     }
 }
